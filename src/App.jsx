@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from './supabase'
 import './App.css'
 
-function App() {
+export default function App() {
   const [seccion, setSeccion] = useState('inicio');
   const [modoEdicion, setModoEdicion] = useState(false);
   const [subiendo, setSubiendo] = useState(false);
@@ -165,7 +165,7 @@ function App() {
             padding: '10px 15px', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '1rem'
           }}
         >
-          {subiendo ? '⏳ Guardando...' : modoEdicion ? '💾 Guardar en la Nube y Salir' : '✏️ Activar Edición'}
+          {subiendo ? '⏳ Guardando...' : modoEdicion ? '💾 Guardar en la Nube y Salir' : '✏️️ Activar Edición'}
         </button>
       )}
 
@@ -235,84 +235,3 @@ function App() {
     </div>
   )
 }
-import React, { useState, useEffect } from 'react';
-import './app.css';
-import { createClient } from '@supabase/supabase-js'; // O como tengas configurado tu cliente de Supabase
-
-// (Opcional) Si prefieres tener las funciones fuera del componente principal:
-let indiceActual = 0;
-let listaDeFotosGlobal = [];
-
-export default function App() {
-  const [fotos, setFotos] = useState([]);
-
-  // 1. Aquí descargas tus fotos de Supabase (ajusta según tu tabla)
-  useEffect(() => {
-    async function cargarFotos() {
-      // Ejemplo: const { data } = await supabase.from('tu_tabla').select('*');
-      // Supongamos que 'data' tiene las URLs de tus fotos en un campo llamado 'url'
-      // setFotos(data);
-      // listaDeFotosGlobal = data.map(item => item.url);
-    }
-    cargarFotos();
-  }, []);
-
-  // 2. Funciones para controlar el visor
-  const abrirVisor = (index) => {
-    indiceActual = index;
-    actualizarImagenVisor();
-    const visor = document.getElementById('visor-dinamico');
-    if (visor) visor.style.display = 'flex';
-  };
-
-  const actualizarImagenVisor = () => {
-    const imgVisor = document.getElementById('imagen-visor');
-    if (imgVisor && listaDeFotosGlobal[indiceActual]) {
-      imgVisor.src = listaDeFotosGlobal[indiceActual];
-    }
-  };
-
-  const cambiarFoto = (direccion) => {
-    indiceActual += direccion;
-    if (indiceActual < 0) {
-      indiceActual = listaDeFotosGlobal.length - 1;
-    } else if (indiceActual >= listaDeFotosGlobal.length) {
-      indiceActual = 0;
-    }
-    actualizarImagenVisor();
-  };
-
-  const cerrarVisor = () => {
-    const visor = document.getElementById('visor-dinamico');
-    if (visor) visor.style.display = 'none';
-  };
-
-  return (
-    <div id="center">
-      {/* Tu contenido actual de la página */}
-      <h1>Museo en Memoria de Rodolfo</h1>
-
-      {/* SECCIÓN DE FOTOGRAFÍAS */}
-      <section className="galeria-dinamica varias-fotos">
-        {fotos.map((foto, index) => (
-          <img 
-            key={foto.id || index} 
-            src={foto.url} 
-            alt="Recuerdo familiar" 
-            onClick={() => abrirVisor(index)} // ¡Aquí ocurre la magia al hacer clic!
-            style={{ cursor: 'pointer' }}
-          />
-        ))}
-      </section>
-
-      {/* ESTRUCTURA DEL VISOR FLOTANTE (Se queda oculto hasta hacer clic) */}
-      <div id="visor-dinamico" className="visor-imagen" style={{ display: 'none' }} onClick={(e) => { if(e.target.id === 'visor-dinamico') cerrarVisor(); }}>
-        <button className="cerrar-visor" onClick={cerrarVisor}>&times;</button>
-        <button className="flecha-visor flecha-izq" onClick={() => cambiarFoto(-1)}>&#10094;</button>
-        <img id="imagen-visor" src="" alt="Ampliada" />
-        <button className="flecha-visor flecha-der" onClick={() => cambiarFoto(1)}>&#10095;</button>
-      </div>
-    </div>
-  );
-}
-export default App

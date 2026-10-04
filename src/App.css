@@ -7,53 +7,52 @@
   border: 2px solid transparent;
   transition: border-color 0.3s;
   margin-bottom: 24px;
+}
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+.counter:hover {
+  border-color: var(--accent-border);
+}
+
+.counter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .hero {
   position: relative;
+}
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
+.hero .base,
+.hero .framework,
+.hero .vite {
+  inset-inline: 0;
+  margin: 0 auto;
+}
 
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
+.hero .base {
+  width: 170px;
+  position: relative;
+  z-index: 0;
+}
 
-  .framework,
-  .vite {
-    position: absolute;
-  }
+.hero .framework,
+.hero .vite {
+  position: absolute;
+}
 
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
+.hero .framework {
+  z-index: 1;
+  top: 34px;
+  height: 28px;
+  transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
+}
 
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+.hero .vite {
+  z-index: 0;
+  top: 107px;
+  height: 26px;
+  width: auto;
+  transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
 }
 
 #center {
@@ -63,8 +62,10 @@
   place-content: center;
   place-items: center;
   flex-grow: 1;
+}
 
-  @media (max-width: 1024px) {
+@media (max-width: 1024px) {
+  #center {
     padding: 32px 20px 24px;
     gap: 18px;
   }
@@ -74,22 +75,27 @@
   display: flex;
   border-top: 1px solid var(--border);
   text-align: left;
+}
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
+#next-steps > div {
+  flex: 1 1 0;
+  padding: 32px;
+}
+
+@media (max-width: 1024px) {
+  #next-steps > div {
+    padding: 24px 20px;
   }
+}
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
+#next-steps .icon {
+  margin-bottom: 16px;
+  width: 22px;
+  height: 22px;
+}
 
-  @media (max-width: 1024px) {
+@media (max-width: 1024px) {
+  #next-steps {
     flex-direction: column;
     text-align: center;
   }
@@ -97,8 +103,10 @@
 
 #docs {
   border-right: 1px solid var(--border);
+}
 
-  @media (max-width: 1024px) {
+@media (max-width: 1024px) {
+  #docs {
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
@@ -110,53 +118,57 @@
   display: flex;
   gap: 8px;
   margin: 32px 0 0;
+}
 
-  .logo {
-    height: 18px;
-  }
+#next-steps ul .logo {
+  height: 18px;
+}
 
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
+#next-steps ul a {
+  color: var(--text-h);
+  font-size: 16px;
+  border-radius: 6px;
+  background: var(--social-bg);
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: box-shadow 0.3s;
+}
 
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
+#next-steps ul a:hover {
+  box-shadow: var(--shadow);
+}
 
-  @media (max-width: 1024px) {
+#next-steps ul a .button-icon {
+  height: 18px;
+  width: 18px;
+}
+
+@media (max-width: 1024px) {
+  #next-steps ul {
     margin-top: 20px;
     flex-wrap: wrap;
     justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
+  }
+  #next-steps ul li {
+    flex: 1 1 calc(50% - 8px);
+  }
+  #next-steps ul a {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 }
 
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
+}
+
+@media (max-width: 1024px) {
+  #spacer {
     height: 48px;
   }
 }
@@ -164,24 +176,26 @@
 .ticks {
   position: relative;
   width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
 }
+
+.ticks::before,
+.ticks::after {
+  content: '';
+  position: absolute;
+  top: -4.5px;
+  border: 5px solid transparent;
+}
+
+.ticks::before {
+  left: 0;
+  border-left-color: var(--border);
+}
+
+.ticks::after {
+  right: 0;
+  border-right-color: var(--border);
+}
+
 /* --- ESTILOS DE LA GALERÍA INTELIGENTE --- */
 .galeria-dinamica {
   display: grid;
@@ -190,11 +204,11 @@
   width: 100%;
 }
 
-/* Si solo hay 1 foto, ocupa casi toda la pantalla */
 .galeria-dinamica.una-foto {
   grid-template-columns: 1fr;
   justify-items: center;
 }
+
 .galeria-dinamica.una-foto img {
   max-width: 90%;
   max-height: 70vh;
@@ -203,23 +217,23 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Si hay varias fotos, se forma una cuadrícula automática */
 .galeria-dinamica.varias-fotos {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
+
 .galeria-dinamica.varias-fotos img {
   width: 100%;
-  height: 300px; /* Todas del mismo alto para que se vea ordenado */
+  height: 300px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
 }
+
 .galeria-dinamica.varias-fotos img:hover {
-  transform: scale(1.03); /* Efecto bonito al pasar el mouse */
+  transform: scale(1.03);
 }
 
-/* Botón gigante para subir fotos en la galería */
 .boton-subir-galeria {
   display: flex;
   flex-direction: column;
@@ -234,9 +248,11 @@
   background-color: rgba(140, 118, 83, 0.05);
   transition: 0.3s;
 }
+
 .boton-subir-galeria:hover {
   background-color: rgba(140, 118, 83, 0.2);
 }
+
 /* --- VISOR DE IMÁGENES EN PANTALLA COMPLETA --- */
 .visor-imagen {
   position: fixed;
@@ -244,7 +260,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente */
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -271,75 +287,11 @@
   font-size: 2rem;
   cursor: pointer;
 }
+
 .cerrar-visor:hover {
   color: #d9534f;
 }
-// Asegúrate de tener estas variables globales o dentro de tu función de galería
-let indiceActual = 0;
-let listaDeFotos = []; // Aquí guardas la lista de URLs de las fotos que vienen de Supabase
 
-// 1. Función para abrir el visor al hacer clic en una foto
-function abrirVisor(index, fotos) {
-  indiceActual = index;
-  listaDeFotos = fotos;
-  
-  // Si no existe el elemento del visor en el HTML, lo creamos dinámicamente
-  let visor = document.getElementById('visor-dinamico');
-  if (!visor) {
-    visor = document.createElement('div');
-    visor.id = 'visor-dinamico';
-    visor.className = 'visor-imagen';
-    visor.innerHTML = `
-      <button class="cerrar-visor" id="btn-cerrar">&times;</button>
-      <button class="flecha-visor flecha-izq" id="btn-anterior">&#10094;</button>
-      <img id="imagen-visor" src="" alt="Ampliada">
-      <button class="flecha-visor flecha-der" id="btn-siguiente">&#10095;</button>
-    `;
-    document.body.appendChild(visor);
-
-    // Eventos de control
-    document.getElementById('btn-cerrar').onclick = cerrarVisor;
-    visor.onclick = (e) => { if (e.target === visor) cerrarVisor(); };
-    document.getElementById('btn-anterior').onclick = () => cambiarFoto(-1);
-    document.getElementById('btn-siguiente').onclick = () => cambiarFoto(1);
-    
-    // Soporte para flechas del teclado (opcional pero muy útil)
-    document.addEventListener('keydown', (e) => {
-      if (visor.style.display === 'flex') {
-        if (e.key === 'ArrowLeft') cambiarFoto(-1);
-        if (e.key === 'ArrowRight') cambiarFoto(1);
-        if (e.key === 'Escape') cerrarVisor();
-      }
-    });
-  }
-
-  actualizarImagenVisor();
-  visor.style.display = 'flex';
-}
-
-function actualizarImagenVisor() {
-  const imgVisor = document.getElementById('imagen-visor');
-  if (imgVisor && listaDeFotos[indiceActual]) {
-    imgVisor.src = listaDeFotos[indiceActual];
-  }
-}
-
-function cambiarFoto(direccion) {
-  indiceActual += direccion;
-  if (indiceActual < 0) {
-    indiceActual = listaDeFotos.length - 1; // Da la vuelta al final
-  } else if (indiceActual >= listaDeFotos.length) {
-    indiceActual = 0; // Vuelve al inicio
-  }
-  actualizarImagenVisor();
-}
-
-function cerrarVisor() {
-  const visor = document.getElementById('visor-dinamico');
-  if (visor) {
-    visor.style.display = 'none';
-  }
-}
 .flecha-visor {
   position: absolute;
   top: 50%;
@@ -354,12 +306,15 @@ function cerrarVisor() {
   border-radius: 4px;
   transition: background 0.3s;
 }
+
 .flecha-visor:hover {
   background: rgba(140, 118, 83, 0.8);
 }
+
 .flecha-izq {
   left: 20px;
 }
+
 .flecha-der {
   right: 20px;
 }
