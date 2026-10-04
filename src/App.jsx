@@ -64,7 +64,7 @@ export default function App() {
   const SeccionesMenu = [
     { id: 'historia', titulo: 'SU HISTORIA' },
     { id: 'fotografias', titulo: 'FOTOGRAFÍAS' },
-    { id: 'palabras', titulo: 'FE Y ESPIRITUALIDAD' },
+    { id: 'fe y espiritualidad', titulo: 'FE Y ESPIRITUALIDAD' }, // <-- Debe decir id: 'palabras'
     { id: 'voz', titulo: 'SU VOZ' },
     { id: 'videos', titulo: 'VIDEOS' },
     { id: 'familia', titulo: 'SU FAMILIA' },
@@ -198,7 +198,9 @@ export default function App() {
       ) : (
         <div className="pantalla-seccion fade-in">
           <button className="boton-volver" onClick={() => setSeccion('inicio')}>← Volver al Inicio</button>
-          <h2 className="titulo-seccion">{seccion.toUpperCase()}</h2>
+          <h2 className="titulo-seccion">
+            {seccion === 'palabras' ? 'FE Y ESPIRITUALIDAD' : seccion.toUpperCase()}
+          </h2>
 
           {seccion === 'fotografias' && (
             <div className={`galeria-dinamica ${(datos.fotografias.length === 1 && !modoEdicion) ? 'una-foto' : 'varias-fotos'}`}>
@@ -217,19 +219,8 @@ export default function App() {
             </div>
           )}
 
-          {seccion === 'palabras' && (
-            <div className="cuadricula-frases">
-              {datos.palabras.map((frase, index) => (
-                <div key={index} className="tarjeta-frase" style={{position: 'relative'}}>
-                  {modoEdicion && <button onClick={() => eliminarPalabra(index)} style={{position: 'absolute', top: '5px', right: '5px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '25px', height: '25px', cursor: 'pointer'}}>X</button>}
-                  {modoEdicion ? <textarea value={frase} onChange={(e) => actualizarPalabra(index, e.target.value)} style={{width: '100%', height: '80px', marginTop: '15px'}} /> : <p>"{frase}"</p>}
-                </div>
-              ))}
-              {modoEdicion && <button onClick={agregarPalabra} style={{padding: '10px', cursor: 'pointer', height: 'fit-content', backgroundColor: '#5cb85c', color: 'white', border: 'none', borderRadius: '5px'}}>+ Agregar Frase</button>}
-            </div>
-          )}
-
-          {['historia', 'familia', 'recuerdos', 'legado', 'voz', 'videos'].includes(seccion) && renderizarSeccionTarjetas(seccion)}
+       
+          {['historia', 'palabras', 'familia', 'recuerdos', 'legado', 'voz', 'videos'].includes(seccion) && renderizarSeccionTarjetas(seccion)}
         </div>
       )}
     </div>
