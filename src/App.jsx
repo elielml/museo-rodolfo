@@ -32,7 +32,16 @@ export default function App() {
         
         // Si hay datos guardados, los combinamos con la base
         if (data && data.contenido && Object.keys(data.contenido).length > 0) {
-          setDatos({ ...baseDatos, ...data.contenido });
+          let contenidoDescargado = data.contenido;
+          
+          // PROTECCIÓN: Si quedaron frases viejas en formato texto, las convierte a formato de tarjeta automáticamente
+          if (contenidoDescargado.palabras && contenidoDescargado.palabras.length > 0) {
+            contenidoDescargado.palabras = contenidoDescargado.palabras.map((p, i) => 
+              typeof p === 'string' ? { id: Date.now() + i, titulo: "Texto Anterior", texto: p, archivo: "" } : p
+            );
+          }
+
+          setDatos({ ...baseDatos, ...contenidoDescargado });
         }
       } catch (error) {
         console.error('Error al cargar datos:', error);
@@ -64,7 +73,7 @@ export default function App() {
   const SeccionesMenu = [
     { id: 'historia', titulo: 'SU HISTORIA' },
     { id: 'fotografias', titulo: 'FOTOGRAFÍAS' },
-    { id: 'fe y espiritualidad', titulo: 'FE Y ESPIRITUALIDAD' }, // <-- Debe decir id: 'palabras'
+    { id: 'palabras', titulo: 'FE Y ESPIRITUALIDAD' },
     { id: 'voz', titulo: 'SU VOZ' },
     { id: 'videos', titulo: 'VIDEOS' },
     { id: 'familia', titulo: 'SU FAMILIA' },
@@ -99,14 +108,6 @@ export default function App() {
 
   const agregarFotoGaleria = (url) => setDatos({ ...datos, fotografias: [...datos.fotografias, url] });
   const eliminarFotoGaleria = (index) => setDatos({ ...datos, fotografias: datos.fotografias.filter((_, i) => i !== index) });
-  
-  const agregarPalabra = () => setDatos({ ...datos, palabras: [...datos.palabras, "Escribe una frase célebre aquí..."] });
-  const actualizarPalabra = (index, valor) => {
-    const nuevas = [...datos.palabras];
-    nuevas[index] = valor;
-    setDatos({ ...datos, palabras: nuevas });
-  };
-  const eliminarPalabra = (index) => setDatos({ ...datos, palabras: datos.palabras.filter((_, i) => i !== index) });
 
   const renderizarSeccionTarjetas = (idSeccion) => {
     const permiteAudio = idSeccion === 'voz';
@@ -154,7 +155,7 @@ export default function App() {
         </div>
       )}
 
-      {/* BOTÓN SECRETO: Solo aparece si escribes ?secreto=si al final de la dirección */}
+      {/* BOTÓN SECRETO */}
       {window.location.search.includes('secreto=si') && (
         <button 
           onClick={modoEdicion ? guardarEnLaNube : () => setModoEdicion(true)}
@@ -165,7 +166,7 @@ export default function App() {
             padding: '10px 15px', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '1rem'
           }}
         >
-          {subiendo ? '⏳ Guardando...' : modoEdicion ? '💾 Guardar en la Nube y Salir' : '✏️️ Activar Edición'}
+          {subiendo ? '⏳ Guardando...' : modoEdicion ? '💾 Guardar en la Nube y Salir' : '✏ Activar Edición'}
         </button>
       )}
 
@@ -198,6 +199,7 @@ export default function App() {
       ) : (
         <div className="pantalla-seccion fade-in">
           <button className="boton-volver" onClick={() => setSeccion('inicio')}>← Volver al Inicio</button>
+          
           <h2 className="titulo-seccion">
             {seccion === 'palabras' ? 'FE Y ESPIRITUALIDAD' : seccion.toUpperCase()}
           </h2>
@@ -219,7 +221,7 @@ export default function App() {
             </div>
           )}
 
-       
+          {/* DIBUJA LAS TARJETAS PARA ESTAS SECCIONES (incluyendo fe y espiritualidad) */}
           {['historia', 'palabras', 'familia', 'recuerdos', 'legado', 'voz', 'videos'].includes(seccion) && renderizarSeccionTarjetas(seccion)}
         </div>
       )}
