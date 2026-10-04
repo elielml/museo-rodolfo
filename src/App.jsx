@@ -64,12 +64,12 @@ function App() {
   const SeccionesMenu = [
     { id: 'historia', titulo: 'SU HISTORIA' },
     { id: 'fotografias', titulo: 'FOTOGRAFÍAS' },
-    { id: 'palabras', titulo: 'SUS PALABRAS' },
+    { id: 'palabras', titulo: 'FE Y ESPIRITUALIDAD' },
     { id: 'voz', titulo: 'SU VOZ' },
     { id: 'videos', titulo: 'VIDEOS' },
     { id: 'familia', titulo: 'SU FAMILIA' },
     { id: 'recuerdos', titulo: 'RECUERDOS' },
-    { id: 'legado', titulo: 'SU LEGADO' },
+    { id: 'legado', titulo: 'CANCIONES' },
   ];
 
   const subirArchivoSupabase = async (evento, callbackActualizacion) => {
